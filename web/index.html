@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fitness AI</title>
+</head>
+<body>
+  <h1>AI健身系统</h1>
+  <button onclick="run()">生成计划</button>
+  <pre id="output"></pre>
+
+  <script>
+    async function run() {
+      const res = await fetch("http://localhost:3000/api/run", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ time: 30, goal: "减脂", level: "初级" })
+      });
+      const data = await res.json();
+      document.getElementById("output").innerText = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>
